@@ -34,7 +34,7 @@ SECRET_KEY = env('DJANGO_SECRET_KEY', default='w0s^mlsma#ryx@h+vu5qea^@im-u)50xv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DJANGO_DEBUG', False)
 
-# Application definition
+ALLOWED_HOSTS = ['*']
 
 DJANGO_APPS = (
     'django.contrib.admin',
@@ -145,7 +145,6 @@ STATICFILES_FINDERS = (
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = str(APPS_DIR('media'))
-
 
 REST_FRAMEWORK = {
 }
