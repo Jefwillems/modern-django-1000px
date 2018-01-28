@@ -46,9 +46,11 @@ DJANGO_APPS = (
 )
 
 THIRD_PARTY_APPS = (
+    'rest_framework',
 )
 
 LOCAL_APPS = (
+    'project.api',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -143,3 +145,7 @@ STATICFILES_FINDERS = (
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = str(APPS_DIR('media'))
+
+
+REST_FRAMEWORK = {
+}
