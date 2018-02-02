@@ -113,6 +113,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'api.Profile'
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
@@ -145,6 +147,7 @@ STATICFILES_FINDERS = (
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = str(APPS_DIR('media'))
+# TODO production: handle static content on the webserver...
 
 REST_FRAMEWORK = {
 }

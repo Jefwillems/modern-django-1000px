@@ -1,17 +1,20 @@
-from django.contrib.auth.models import User
 from rest_framework import serializers
-from project.api.models import Profile
+
+from project.api.models import Profile, Picture
+
+
+class PictureSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Picture
+        fields = ('title',
+                  'image',
+                  'description',
+                  'upload_date',
+                  'last_modified',
+                  'author')
 
 
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Profile
-        fields = ('birth_date',)
-
-
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    profile = ProfileSerializer()
-
-    class Meta:
-        model = User
-        fields = ('url', 'username', 'email', 'groups', 'profile')
+        fields = ('id', 'url', 'username', 'email', 'groups', 'birthday', 'bio')
