@@ -28,5 +28,6 @@
 * run server
 
   ```bash
-    (venv) $ python manage.py runserver
+    (venv) $ export DJANGO_SETTINGS_MODULE="config.settings.<specify your desired settings file e.g: local.py>"
+    (venv) $ python manage.py runserver
   ```
