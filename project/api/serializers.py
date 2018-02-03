@@ -8,7 +8,8 @@ class PictureSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Picture
-        fields = ('title',
+        fields = ('id',
+                  'title',
                   'image',
                   'description',
                   'upload_date',
@@ -17,7 +18,12 @@ class PictureSerializer(serializers.HyperlinkedModelSerializer):
                   'url',
                   'likes')
 
-    def get_likes(self, obj):
+    def get_likes(self, obj: Picture) -> int:
+        """
+        Returns the amount of likes this Picture has received.
+        :param obj: Picture
+        :return: int
+        """
         return obj.likes.count()
 
 

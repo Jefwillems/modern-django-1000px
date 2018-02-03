@@ -10,6 +10,10 @@ class Profile(AbstractUser):
     birthday = models.DateField(blank=True, null=True)
     bio = models.CharField(max_length=128, blank=True, null=True)
 
+    def like_picture(self, pic):
+        Like.objects.create(person=self, picture=pic)
+        return pic
+
 
 class Picture(models.Model):
     title = models.CharField(max_length=32, blank=False)
@@ -18,4 +22,14 @@ class Picture(models.Model):
     upload_date = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     author = models.OneToOneField(Profile, on_delete=models.CASCADE)
-    likes = models.ManyToManyField(Profile, related_name='likes')
+    likes = models.ManyToManyField(
+        Profile,
+        through='Like',
+        through_fields=('picture', 'person'),
+        related_name='likes')
+
+
+class Like(models.Model):
+    person = models.ForeignKey(Profile)
+    picture = models.ForeignKey(Picture)
+    timestamp = models.DateTimeField(auto_now_add=True)

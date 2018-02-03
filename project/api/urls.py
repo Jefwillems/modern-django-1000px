@@ -8,4 +8,5 @@ router.register(r'pictures', views.PictureViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
+    url(r'pictures/(?P<pk>[0-9]+)/like$', views.like_picture)
 ]
