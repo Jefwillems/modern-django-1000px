@@ -70,7 +70,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [APPS_DIR.path('templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -150,4 +150,7 @@ MEDIA_ROOT = str(APPS_DIR('media'))
 # TODO production: handle static content on the webserver...
 
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    )
 }

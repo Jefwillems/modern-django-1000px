@@ -18,3 +18,4 @@ class Picture(models.Model):
     upload_date = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     author = models.OneToOneField(Profile, on_delete=models.CASCADE)
+    likes = models.ManyToManyField(Profile, related_name='likes')

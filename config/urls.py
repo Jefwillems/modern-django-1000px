@@ -22,5 +22,6 @@ from django.views.static import serve
 urlpatterns = [
                   url(r'^admin/', admin.site.urls),
                   url(r'^api/', include('project.api.urls')),
+                  url(r'^api-auth/', include('rest_framework.urls')),
                   url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
