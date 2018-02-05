@@ -1,10 +1,12 @@
 from rest_framework import serializers
 
-from project.api.models import Profile, Picture
+from project.api.models import Profile, Picture, Status
 
 
 class PictureSerializer(serializers.HyperlinkedModelSerializer):
     likes = serializers.SerializerMethodField()
+    author = serializers.PrimaryKeyRelatedField(read_only=True,
+                                                default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Picture
@@ -40,7 +42,8 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
                   'groups',
                   'birthday',
                   'bio',
-                  'likes')
+                  'likes',
+                  'followers')
 
     def create(self, validated_data):
         user = Profile.objects.create_user(validated_data['username'], validated_data['email'],
@@ -54,3 +57,14 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
         user = super().update(instance, validated_data)
         user.set_password(validated_data['password'])
         return user
+
+
+class StatusSerializer(serializers.HyperlinkedModelSerializer):
+
+
+    class Meta:
+        model = Status
+        fields = ('id',
+                  'author',
+                  'text',
+                  'date_created')
