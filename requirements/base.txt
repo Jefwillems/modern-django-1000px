@@ -5,3 +5,4 @@ Pillow
 django-rest-auth
 djangorestframework-jwt
 django-allauth
+psycopg2
